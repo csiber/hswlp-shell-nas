@@ -1,61 +1,60 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# HSWLP:NAS – Next-Generation Self-Hosted Cloud Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**HSWLP:NAS** is an upcoming self-hosted platform, built with Laravel, that aims to provide  
+a **modern, user-friendly alternative to traditional NAS (Network Attached Storage) systems**.  
+The project is part of the broader **HSWLP (Hybrid Service Workflow Launch Platform)** ecosystem.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🎯 Vision
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The goal of HSWLP:NAS is to deliver a **cloud-like experience on local hardware**, combining the  
+simplicity of consumer-grade NAS devices with the flexibility and scalability of developer tools.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+It will provide:
 
-## Learning Laravel
+- 📂 **File management & sharing** – upload, organize, and securely share files
+- 🐳 **Docker stack manager** – deploy applications (e.g. Plex, Transmission) in one click
+- 🌐 **Network & access control** – intuitive management of networking, ports, and access rules
+- 🔒 **Data security** – user authentication, permissions, and audit logging
+- 🎨 **Modern interface** – inspired by Unifi-style dashboards for clarity and usability
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🛠️ Technology
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend:** Laravel (PHP)  
+- **Database:** MySQL/Postgres  
+- **Containers:** Docker  
+- **UI:** TailwindCSS + Vue/React (to be decided)  
+- **Hosting:** Self-hosted, bare metal or VM  
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📅 Current Status
 
-### Premium Partners
+🚧 **Development in progress** – HSWLP:NAS is currently in the planning and prototyping stage.  
+This repository will grow to include Laravel codebase, migrations, and containerized services.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 📌 Roadmap
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- [ ] Core Laravel setup with authentication  
+- [ ] File upload & management module  
+- [ ] Docker stack deployment engine  
+- [ ] User roles & permissions  
+- [ ] Web-based dashboard (Unifi-style UI)  
+- [ ] Backup & restore system  
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🌍 Part of the HSWLP Ecosystem
 
-## Security Vulnerabilities
+HSWLP:NAS is one piece of the **HSWLP (Hybrid Service Workflow Launch Platform)** initiative:  
+a collection of applications designed to simplify and modernize workflows for individuals,  
+teams, and businesses — both in the cloud and on-premise.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Status:** Early development – contributions and ideas welcome.  
