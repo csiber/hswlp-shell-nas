@@ -13,14 +13,14 @@ return new class extends Migration {
             $table->boolean('smb_export')->default(true);
             $table->boolean('nfs_export')->default(false);
             $table->unsignedInteger('quota_gb')->nullable();
-            $table->foreignUuid('owner_user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('owner_user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
 
         Schema::create('share_permissions', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('share_id')->constrained('shares')->cascadeOnDelete();
-            $table->foreignUuid('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->enum('perm', ['read','write','admin']);
             $table->unique(['share_id','user_id']);
         });

@@ -3,7 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Share;
+use App\Models\SharePermission;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -63,5 +67,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function ownedShares(): HasMany
+    {
+        return $this->hasMany(Share::class, 'owner_user_id');
+    }
+
+    public function sharePermissions(): HasMany
+    {
+        return $this->hasMany(SharePermission::class);
+    }
+
+    public function accessibleShares(): BelongsToMany
+    {
+        return $this->belongsToMany(Share::class, 'share_permissions')->withPivot('perm');
     }
 }
