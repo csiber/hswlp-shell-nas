@@ -3,27 +3,56 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AppResource\Pages;
-use App\Filament\Resources\AppResource\RelationManagers;
 use App\Models\App;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AppResource extends Resource
 {
     protected static ?string $model = App::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cube';
+
+    protected static ?string $modelLabel = 'Alkalmazás';
+
+    protected static ?string $navigationGroup = 'Alkalmazások';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                TextInput::make('id')
+                    ->label('Azonosító')
+                    ->required()
+                    ->alphaDash()
+                    ->maxLength(50)
+                    ->disabledOn('edit'),
+                TextInput::make('title')
+                    ->label('Megjelenített név')
+                    ->required()
+                    ->maxLength(150),
+                Select::make('status')
+                    ->label('Állapot')
+                    ->options([
+                        'installed' => 'Telepítve',
+                        'running' => 'Fut',
+                        'stopped' => 'Leállítva',
+                    ])
+                    ->required(),
+                TextInput::make('http_port')
+                    ->label('HTTP port')
+                    ->numeric()
+                    ->minValue(1)
+                    ->maxValue(65535)
+                    ->nullable(),
             ]);
     }
 
@@ -31,10 +60,43 @@ class AppResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('title')
+                    ->label('Név')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('id')
+                    ->label('Azonosító')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('status')
+                    ->label('Állapot')
+                    ->badge()
+                    ->formatStateUsing(fn (string $state) => match ($state) {
+                        'installed' => 'Telepítve',
+                        'running' => 'Fut',
+                        'stopped' => 'Leállítva',
+                        default => $state,
+                    }),
+                TextColumn::make('http_port')
+                    ->label('HTTP port')
+                    ->sortable()
+                    ->formatStateUsing(fn ($state) => $state ?: '—'),
+                TextColumn::make('instances_count')
+                    ->label('Példányok')
+                    ->sortable(),
+                TextColumn::make('updated_at')
+                    ->label('Utolsó módosítás')
+                    ->dateTime('Y.m.d. H:i')
+                    ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->label('Állapot')
+                    ->options([
+                        'installed' => 'Telepítve',
+                        'running' => 'Fut',
+                        'stopped' => 'Leállítva',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -44,6 +106,11 @@ class AppResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->withCount('instances');
     }
 
     public static function getRelations(): array
